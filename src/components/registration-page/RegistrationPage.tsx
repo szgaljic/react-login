@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {AuthenticationService} from '../services/AuthenticationService';
+import {Redirect} from 'react-router';
+import {AuthenticationService} from '../../services/AuthenticationService';
 
 
 class RegistrationPage extends React.Component<{}, {
@@ -8,7 +9,8 @@ class RegistrationPage extends React.Component<{}, {
   password: string,
   submitted: boolean,
   loading: boolean,
-  error: string}> {
+  error: string,
+  success: boolean}> {
 
   constructor(props: any) {
     super(props);
@@ -19,7 +21,8 @@ class RegistrationPage extends React.Component<{}, {
       password: '',
       submitted: false,
       loading: false,
-      error: ''
+      error: '',
+      success: false
     };
 
   }
@@ -34,7 +37,9 @@ class RegistrationPage extends React.Component<{}, {
       return;
     }
 
-    AuthenticationService.registerUser(email, username, password).then(resp => {debugger;})
+    AuthenticationService.registerUser(email, username, password).then(_ => {
+      this.setState({success: true})
+    })
   };
 
   handleChange = (e: any) => {
@@ -44,7 +49,10 @@ class RegistrationPage extends React.Component<{}, {
   };
 
   render() {
-    const { email, username, password, submitted, loading, error } = this.state;
+    const { email, username, password, submitted, loading, error, success } = this.state;
+    if (success) {
+      return <Redirect to='/login'/>
+    }
     return (
       <div className="col-md-6 col-md-offset-3">
         <h2>Register</h2>

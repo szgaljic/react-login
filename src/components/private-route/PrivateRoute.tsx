@@ -5,6 +5,6 @@ import {Route, Redirect} from 'react-router-dom'
 export const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={props => (
     localStorage.getItem('accessToken') ? <Component {...props} /> :
-      <Redirect to={{ pathname: '/register', state: {from: props.location} }}/>
+      <Redirect to={{ pathname: '/dashboard', state: {from: props.location} }}/>
   )} />
 );
