@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Redirect} from 'react-router';
+import {RegisterDetails} from '../../models/classes/RegisterDetails';
 import {AuthenticationService} from '../../services/AuthenticationService';
 
 
@@ -37,7 +38,7 @@ class RegistrationPage extends React.Component<{}, {
       return;
     }
 
-    AuthenticationService.registerUser(email, username, password).then(_ => {
+    AuthenticationService.registerUser(new RegisterDetails(email, username, password)).then(_ => {
       this.setState({success: true})
     })
   };

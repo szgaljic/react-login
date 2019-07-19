@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {Dashboard} from '../components/dashboard/Dashboard';
+import {Navbar} from '../components/navbar/Navbar';
 
 import {PrivateRoute} from '../components/private-route/PrivateRoute';
 import {HomePage} from '../components/home-page/HomePage';
@@ -12,10 +12,10 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Route path="/" component={Dashboard}/>
+          <Route path="/" component={Navbar}/>
           <PrivateRoute exact path="/home" component={HomePage}/>
-          <Route path="/register" component={RegistrationPage} />
-          <Route path="/login" component={LoginPage} />
+          <Route exact path="/register" component={RegistrationPage} />
+          <Route exact path="/login" component={LoginPage} />
         </div>
       </Router>
     );

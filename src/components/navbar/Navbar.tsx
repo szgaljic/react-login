@@ -1,11 +1,15 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
+import {AuthenticationService} from '../../services/AuthenticationService';
 
 
-export class Dashboard extends React.Component {
+export class Navbar extends React.Component {
 
   constructor(props: any) {
     super(props);
+    this.state = {
+      user: AuthenticationService.getUser()
+    }
   }
 
   render() {
